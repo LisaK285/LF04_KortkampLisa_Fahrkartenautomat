@@ -20,7 +20,7 @@ class Fahrkartenautomat {
 		nochZuZahlen = 0.0;
 		while (eingezahlterGesamtbetrag < zuZahlenderBetrag) {
 			nochZuZahlen = zuZahlenderBetrag - eingezahlterGesamtbetrag;
-			System.out.println("Noch zu zahlen: " + nochZuZahlen);
+			System.out.printf("Noch zu zahlen: %.2f \n", nochZuZahlen);
 			System.out.print("Eingabe (mind. 5 Cent, höchstens 2 Euro): ");
 			eingeworfeneMuenze = tastatur.nextDouble();
 			eingezahlterGesamtbetrag = eingezahlterGesamtbetrag + eingeworfeneMuenze;
@@ -73,8 +73,6 @@ class Fahrkartenautomat {
 
 		System.out.println("\nVergessen Sie nicht, den Fahrschein\n" + "vor Fahrtantritt entwerten zu lassen!\n"
 				+ "Wir wünschen Ihnen eine gute Fahrt.");
-		System.out.println("Das ist ein Test-Push.");
-		//eine weitere Übung um zu Überprüfen ob das Pushen funktioniert.
 
 		tastatur.close();
 	}
