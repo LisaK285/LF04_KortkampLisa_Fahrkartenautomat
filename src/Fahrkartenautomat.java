@@ -74,6 +74,7 @@ class Fahrkartenautomat {
 		System.out.println("\nVergessen Sie nicht, den Fahrschein\n" + "vor Fahrtantritt entwerten zu lassen!\n"
 				+ "Wir wünschen Ihnen eine gute Fahrt.");
 		System.out.println("Das ist ein Test-Push.");
+		//eine weitere Übung um zu Überprüfen ob das Pushen funktioniert.
 
 		tastatur.close();
 	}
