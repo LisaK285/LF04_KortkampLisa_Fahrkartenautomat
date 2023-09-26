@@ -2,6 +2,10 @@ import java.util.Scanner;
 
 class Fahrkartenautomat {
 	public static void main(String[] args) {
+		
+		/*A3.1: Ausgabe des Fahrkartenautomaten angepasst
+		 * A3.2: Anzahl der Tickets hinzufügen
+		 *  */
 
 		Scanner tastatur = new Scanner(System.in);
 
@@ -10,16 +14,19 @@ class Fahrkartenautomat {
 		double eingeworfeneMuenze;
 		double rueckgabebetrag;
 		double nochZuZahlen;
+		int anzahlTickets;
 
 		// 1
 		System.out.print("Zu zahlender Betrag (Euro): ");
 		zuZahlenderBetrag = tastatur.nextDouble();
+		System.out.print("Anzahl der Tickets: ");
+		anzahlTickets = tastatur.nextInt();
 
 		// 2
 		eingezahlterGesamtbetrag = 0.0;
 		nochZuZahlen = 0.0;
-		while (eingezahlterGesamtbetrag < zuZahlenderBetrag) {
-			nochZuZahlen = zuZahlenderBetrag - eingezahlterGesamtbetrag;
+		while (eingezahlterGesamtbetrag < (zuZahlenderBetrag * anzahlTickets)) {
+			nochZuZahlen = (zuZahlenderBetrag * anzahlTickets) - eingezahlterGesamtbetrag;
 			System.out.printf("Noch zu zahlen: %.2f \n", nochZuZahlen);
 			System.out.print("Eingabe (mind. 5 Cent, höchstens 2 Euro): ");
 			eingeworfeneMuenze = tastatur.nextDouble();
