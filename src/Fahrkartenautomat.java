@@ -2,16 +2,17 @@ import java.util.Scanner;
 
 class Fahrkartenautomat {
 
-	
-	
 	public static void main(String[] args) {
 		
 		/*A3.1: Ausgabe des Fahrkartenautomaten angepasst
 		 * A3.2: Anzahl der Tickets hinzufügen
 		 * A3.3: Fehlerbeseitigung?
 		 * A4.1: Ticketgrenzen im Fahrkartenautomat eingefügt
+		 * A4.3: Geldeingabe überprüfen
 		 * 
 		 *  */
+		
+		
 
 		Scanner tastatur = new Scanner(System.in);
 
@@ -43,9 +44,19 @@ class Fahrkartenautomat {
 		while (eingezahlterGesamtbetrag < (zuZahlenderBetrag * anzahlTickets)) {
 			nochZuZahlen = (zuZahlenderBetrag * anzahlTickets) - eingezahlterGesamtbetrag;
 			System.out.printf("Noch zu zahlen: %.2f \n", nochZuZahlen);
-			System.out.print("Eingabe (mind. 5 Cent, höchstens 2 Euro): ");
+			System.out.print("Eingabe (mind. 5 Cent, höchstens 20 Euro): ");
 			eingeworfeneMuenze = tastatur.nextDouble();
-			eingezahlterGesamtbetrag = eingezahlterGesamtbetrag + eingeworfeneMuenze;
+			
+			boolean isValid = false;
+			if (eingeworfeneMuenze ==0.05 || eingeworfeneMuenze == 0.1 ||eingeworfeneMuenze ==  0.2 ||eingeworfeneMuenze  ==  0.5 ||eingeworfeneMuenze ==  1 ||eingeworfeneMuenze ==  2) {
+				isValid = true;
+			} else if (eingeworfeneMuenze == 5 ||eingeworfeneMuenze ==  10 ||eingeworfeneMuenze ==  20) {
+				isValid = true;
+			}
+			if (isValid == true) {
+			eingezahlterGesamtbetrag = eingezahlterGesamtbetrag + eingeworfeneMuenze;}
+			else {System.out.println("Kein gültiges Zahlungsmittel.");}
+			
 		}
 		
 		// 3
