@@ -1,10 +1,16 @@
 import java.util.Scanner;
 
 class Fahrkartenautomat {
+
+	
+	
 	public static void main(String[] args) {
 		
 		/*A3.1: Ausgabe des Fahrkartenautomaten angepasst
 		 * A3.2: Anzahl der Tickets hinzufügen
+		 * A3.3: Fehlerbeseitigung?
+		 * A4.1: Ticketgrenzen im Fahrkartenautomat eingefügt
+		 * 
 		 *  */
 
 		Scanner tastatur = new Scanner(System.in);
@@ -19,8 +25,17 @@ class Fahrkartenautomat {
 		// 1
 		System.out.print("Zu zahlender Betrag (Euro): ");
 		zuZahlenderBetrag = tastatur.nextDouble();
+		if (zuZahlenderBetrag < 0.05) {
+			zuZahlenderBetrag = 1;
+			System.out.println("Fehlerhafte Eingabe. Ticketpreis wird auf 1 gesetzt.");
+		}
+		
 		System.out.print("Anzahl der Tickets: ");
 		anzahlTickets = tastatur.nextInt();
+		if (anzahlTickets < 1 || anzahlTickets > 10) {
+			anzahlTickets = 1;
+			System.out.println("Fehlerhafte Eingabe. Ticketanzahl wird auf 1 gesetzt.");
+		}
 
 		// 2
 		eingezahlterGesamtbetrag = 0.0;
@@ -46,10 +61,11 @@ class Fahrkartenautomat {
 		}
 		System.out.println("\n\n");
 		
+		
 		// 4
 		rueckgabebetrag = eingezahlterGesamtbetrag - zuZahlenderBetrag;
 		if (rueckgabebetrag > 0.0) {
-			System.out.println("Der Rückgabebetrag in Höhe von " + rueckgabebetrag + " Euro");
+			System.out.printf("Der Rückgabebetrag in Höhe von %.2f Euro ", rueckgabebetrag);
 			System.out.println("wird in folgenden Münzen ausgezahlt:");
 
 			while (rueckgabebetrag >= 2.0) { // 2-Euro-Münzen
@@ -71,10 +87,13 @@ class Fahrkartenautomat {
 			while (rueckgabebetrag >= 0.1) { // 10-Cent-Münzen
 				System.out.println("10 Cent");
 				rueckgabebetrag = rueckgabebetrag - 0.1;
+				rueckgabebetrag = Math.round(rueckgabebetrag * 20) / 20;
 			}
 			while (rueckgabebetrag >= 0.05) { // 5-Cent-Münzen
 				System.out.println("5 Cent");
 				rueckgabebetrag = rueckgabebetrag - 0.05;
+
+				rueckgabebetrag = Math.round(rueckgabebetrag * 20) / 20;
 			}
 		}
 
