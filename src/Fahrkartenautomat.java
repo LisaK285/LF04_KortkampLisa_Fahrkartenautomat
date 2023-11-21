@@ -107,7 +107,7 @@ class Fahrkartenautomat {
 				rueckgabebetrag = Math.round(rueckgabebetrag * 20) / 20;
 			}
 		}
-
+		
 		System.out.println("\nVergessen Sie nicht, den Fahrschein\n" + "vor Fahrtantritt entwerten zu lassen!\n"
 				+ "Wir wünschen Ihnen eine gute Fahrt.");
 
