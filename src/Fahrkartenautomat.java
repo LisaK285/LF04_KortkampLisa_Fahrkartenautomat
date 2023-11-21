@@ -1,48 +1,36 @@
 import java.util.Scanner;
 
 class Fahrkartenautomat {
-
-	public static void main(String[] args) {
-		
-		/*A3.1: Ausgabe des Fahrkartenautomaten angepasst
-		 * A3.2: Anzahl der Tickets hinzufügen
-		 * A3.3: Fehlerbeseitigung?
-		 * A4.1: Ticketgrenzen im Fahrkartenautomat eingefügt
-		 * A4.3: Geldeingabe überprüfen
-		 * 
-		 *  */
-		
-		
-
-		Scanner tastatur = new Scanner(System.in);
-
-		double zuZahlenderBetrag;
-		double eingezahlterGesamtbetrag;
-		double eingeworfeneMuenze;
-		double rueckgabebetrag;
-		double nochZuZahlen;
-		int anzahlTickets;
-
-		// 1
+	
+	public static void begruessung() {
+	System.out.println("Herzlich Willkommen!");	
+	}
+	
+	public static double fahrkartenbestellungErfassen(Scanner tastatur) {
 		System.out.print("Zu zahlender Betrag (Euro): ");
-		zuZahlenderBetrag = tastatur.nextDouble();
-		if (zuZahlenderBetrag < 0.05) {
+		double zuZahlenderBetrag = tastatur.nextDouble();
+		if(zuZahlenderBetrag < 0.05) {
 			zuZahlenderBetrag = 1;
-			System.out.println("Fehlerhafte Eingabe. Ticketpreis wird auf 1 gesetzt.");
+			System.out.print("Fehlerhafte Eingabe. Ticketpreis wird auf 1€ gesetzt.");
 		}
-		
 		System.out.print("Anzahl der Tickets: ");
-		anzahlTickets = tastatur.nextInt();
+		int anzahlTickets = tastatur.nextInt();
 		if (anzahlTickets < 1 || anzahlTickets > 10) {
 			anzahlTickets = 1;
 			System.out.println("Fehlerhafte Eingabe. Ticketanzahl wird auf 1 gesetzt.");
 		}
-
-		// 2
-		eingezahlterGesamtbetrag = 0.0;
-		nochZuZahlen = 0.0;
-		while (eingezahlterGesamtbetrag < (zuZahlenderBetrag * anzahlTickets)) {
-			nochZuZahlen = (zuZahlenderBetrag * anzahlTickets) - eingezahlterGesamtbetrag;
+		
+		
+		return zuZahlenderBetrag * anzahlTickets;
+	}
+	
+	public static double fahrkartenBezahlen(Scanner tastatur, double zuZahlenderBetrag) {
+		double eingeworfeneMuenze;
+		double eingezahlterGesamtBetrag;
+		double eingezahlterGesamtbetrag = 0.0;
+		double nochZuZahlen = 0.0;
+		while (eingezahlterGesamtbetrag < zuZahlenderBetrag) {
+			nochZuZahlen = zuZahlenderBetrag - eingezahlterGesamtbetrag;
 			System.out.printf("Noch zu zahlen: %.2f \n", nochZuZahlen);
 			System.out.print("Eingabe (mind. 5 Cent, höchstens 20 Euro): ");
 			eingeworfeneMuenze = tastatur.nextDouble();
@@ -55,11 +43,11 @@ class Fahrkartenautomat {
 			}
 			if (isValid == true) {
 			eingezahlterGesamtbetrag = eingezahlterGesamtbetrag + eingeworfeneMuenze;}
-			else {System.out.println("Kein gültiges Zahlungsmittel.");}
-			
-		}
-		
-		// 3
+			else {System.out.println("Kein gültiges Zahlungsmittel.");
+			}}
+			return eingezahlterGesamtbetrag;
+	}
+	public static void fahrkartenAusgabe() {
 		System.out.println("\nFahrschein wird ausgegeben");
 		for (int i = 0; i < 8; i++) {
 			System.out.print("=");
@@ -71,9 +59,10 @@ class Fahrkartenautomat {
 			}
 		}
 		System.out.println("\n\n");
-		
-		
-		// 4
+	}
+	
+	public static void rueckgeldAusgeben(double zuZahlenderBetrag, double eingezahlterGesamtbetrag) {
+		double rueckgabebetrag;
 		rueckgabebetrag = eingezahlterGesamtbetrag - zuZahlenderBetrag;
 		if (rueckgabebetrag > 0.0) {
 			System.out.printf("Der Rückgabebetrag in Höhe von %.2f Euro ", rueckgabebetrag);
@@ -110,6 +99,39 @@ class Fahrkartenautomat {
 		
 		System.out.println("\nVergessen Sie nicht, den Fahrschein\n" + "vor Fahrtantritt entwerten zu lassen!\n"
 				+ "Wir wünschen Ihnen eine gute Fahrt.");
+	}
+	public static void main(String[] args) {
+		
+		/*A3.1: Ausgabe des Fahrkartenautomaten angepasst
+		 * A3.2: Anzahl der Tickets hinzufügen
+		 * A3.3: Fehlerbeseitigung?
+		 * A4.1: Ticketgrenzen im Fahrkartenautomat eingefügt
+		 * A4.3: Geldeingabe überprüfen
+		 * A6.3: Methoden
+		 *  */
+		
+		
+
+		Scanner tastatur = new Scanner(System.in);
+		begruessung();
+
+		double zuZahlenderBetrag;
+		double eingezahlterGesamtbetrag;
+		double eingeworfeneMuenze;
+		double rueckgabebetrag;
+		double nochZuZahlen;
+
+		// 1
+		zuZahlenderBetrag = fahrkartenbestellungErfassen(tastatur);
+		eingezahlterGesamtbetrag = fahrkartenBezahlen(tastatur, zuZahlenderBetrag);
+		
+		// 3
+		
+		fahrkartenAusgabe();
+		
+		// 4
+		rueckgeldAusgeben(zuZahlenderBetrag, eingezahlterGesamtbetrag);
+		
 
 		tastatur.close();
 	}
