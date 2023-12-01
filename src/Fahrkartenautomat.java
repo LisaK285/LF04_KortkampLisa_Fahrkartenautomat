@@ -121,6 +121,7 @@ class Fahrkartenautomat {
 		 * A4.1: Ticketgrenzen im Fahrkartenautomat eingefügt
 		 * A4.3: Geldeingabe überprüfen
 		 * A6.3: Methoden
+		 * A7.4: Fahrkartenarray
 		 *  */
 		
 	
