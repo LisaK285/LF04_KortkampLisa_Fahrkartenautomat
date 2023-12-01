@@ -7,12 +7,23 @@ class Fahrkartenautomat {
 	}
 	
 	public static double fahrkartenbestellungErfassen(Scanner tastatur) {
-		System.out.print("Zu zahlender Betrag (Euro): ");
+		int auswahlNummer = 1;
+		double[] fahrkartenPreise = {3.0, 3.5, 3.8, 2.0, 8.6, 9.2, 10.0, 9.4, 12.6, 13.8, 25.5, 26.0, 26.5};
+		String[] fahrkartenOptionen = {"Einzelfahrschein AB","Einzelfahrschein BC","Einzelfahrschein ABC","Kurzstrecke AB","Tageskarte AB","Tageskarte BC","Tageskarte ABC","4-Fahrten-Karte AB","4-Fahrten-Karte BC","4-Fahrten-Karte ABC","Kleingruppen-Tageskarte AB","Kleingruppen-Tageskarte BC","Kleingruppen-Tageskarte ABC"};
+		System.out.println("Bitte wählen Sie eine Fahrkartenoption aus: ");
+		for(int i= 0; i < fahrkartenOptionen.length; i++) {
+			System.out.print(fahrkartenOptionen[i] + " ");
+			System.out.print("[" + fahrkartenPreise[i] +"]" + " " + "(" + (i+1) +")" + "\n");
+		}
+		
+		double auswahlTicket = tastatur.nextDouble();
+		
+		/*System.out.print("Zu zahlender Betrag (Euro): ");
 		double zuZahlenderBetrag = tastatur.nextDouble();
 		if(zuZahlenderBetrag < 0.05) {
 			zuZahlenderBetrag = 1;
 			System.out.print("Fehlerhafte Eingabe. Ticketpreis wird auf 1€ gesetzt.");
-		}
+		} */
 		System.out.print("Anzahl der Tickets: ");
 		int anzahlTickets = tastatur.nextInt();
 		if (anzahlTickets < 1 || anzahlTickets > 10) {
@@ -20,8 +31,8 @@ class Fahrkartenautomat {
 			System.out.println("Fehlerhafte Eingabe. Ticketanzahl wird auf 1 gesetzt.");
 		}
 		
+		return auswahlTicket * anzahlTickets;
 		
-		return zuZahlenderBetrag * anzahlTickets;
 	}
 	
 	public static double fahrkartenBezahlen(Scanner tastatur, double zuZahlenderBetrag) {
@@ -100,6 +111,8 @@ class Fahrkartenautomat {
 		System.out.println("\nVergessen Sie nicht, den Fahrschein\n" + "vor Fahrtantritt entwerten zu lassen!\n"
 				+ "Wir wünschen Ihnen eine gute Fahrt.");
 	}
+	
+	
 	public static void main(String[] args) {
 		
 		/*A3.1: Ausgabe des Fahrkartenautomaten angepasst
@@ -110,16 +123,13 @@ class Fahrkartenautomat {
 		 * A6.3: Methoden
 		 *  */
 		
-		
+	
 
 		Scanner tastatur = new Scanner(System.in);
 		begruessung();
 
 		double zuZahlenderBetrag;
 		double eingezahlterGesamtbetrag;
-		double eingeworfeneMuenze;
-		double rueckgabebetrag;
-		double nochZuZahlen;
 
 		// 1
 		zuZahlenderBetrag = fahrkartenbestellungErfassen(tastatur);
